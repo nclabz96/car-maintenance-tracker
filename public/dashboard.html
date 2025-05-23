@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Maintenance Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Vehicle Maintenance Tracker</h1>
+            <button id="logoutButton">Logout</button>
+        </header>
+        <main>
+            <h2>My Vehicles</h2>
+            <div id="vehiclesList">
+                <!-- Vehicles will be listed here by JavaScript -->
+            </div>
+            <hr>
+            <h2>Add New Vehicle</h2>
+            <form id="addVehicleForm">
+                <div>
+                    <label for="make">Make:</label>
+                    <input type="text" id="make" name="make" required>
+                </div>
+                <div>
+                    <label for="model">Model:</label>
+                    <input type="text" id="model" name="model" required>
+                </div>
+                <div>
+                    <label for="year">Year:</label>
+                    <input type="number" id="year" name="year" required>
+                </div>
+                <div>
+                    <label for="current_mileage">Current Mileage (km):</label>
+                    <input type="number" id="current_mileage" name="current_mileage" required>
+                </div>
+                <button type="submit">Add Vehicle</button>
+            </form>
+            <p id="vehicleMessage"></p>
+        </main>
+    </div>
+    <script src="js/auth.common.js"></script><script src="js/dashboard.js"></script>
+</body>
+</html>
