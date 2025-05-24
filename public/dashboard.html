@@ -14,11 +14,23 @@
         <main>
             <h2>My Vehicles</h2>
             <div id="vehiclesList">
-                <!-- Vehicles will be listed here by JavaScript -->
+                <!-- Vehicles will be listed here by JavaScript.
+                     Each vehicle item will have a structure like:
+                     <div class="vehicle-item">
+                         <h3>Ford Focus (2020)</h3>
+                         ...
+                         <button class="view-maint-btn" data-id="vehicleId">View/Add Maintenance</button>
+                         <div class="maintenance-section" id="maint-vehicleId" style="display:none;">
+                             <h4>Maintenance Records</h4>
+                             <div class="maintenance-records-list"></div>
+                             <button class="add-maint-btn" data-vehicle-id="vehicleId">Add New Record</button>
+                         </div>
+                     </div>
+                -->
             </div>
             <hr>
             <h2>Add New Vehicle</h2>
-            <form id="addVehicleForm">
+            <form id="addVehicleForm"> <!-- Existing form -->
                 <div>
                     <label for="make">Make:</label>
                     <input type="text" id="make" name="make" required>
@@ -38,8 +50,86 @@
                 <button type="submit">Add Vehicle</button>
             </form>
             <p id="vehicleMessage"></p>
+
+            <!-- Edit Vehicle Modal (existing) -->
+            <div id="editVehicleModal" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <span class="close-button" id="closeEditModal">&times;</span>
+                    <h2>Edit Vehicle</h2>
+                    <form id="editVehicleForm">
+                        <input type="hidden" id="editVehicleId">
+                        <div>
+                            <label for="editMake">Make:</label>
+                            <input type="text" id="editMake" name="make" required>
+                        </div>
+                        <div>
+                            <label for="editModel">Model:</label>
+                            <input type="text" id="editModel" name="model" required>
+                        </div>
+                        <div>
+                            <label for="editYear">Year:</label>
+                            <input type="number" id="editYear" name="year" required>
+                        </div>
+                        <div>
+                            <label for="editCurrentMileage">Current Mileage (km):</label>
+                            <input type="number" id="editCurrentMileage" name="current_mileage" required>
+                        </div>
+                        <button type="submit">Save Changes</button>
+                    </form>
+                    <p id="editVehicleMessage"></p>
+                </div>
+            </div>
+
+            <!-- Deletion Confirmation Modal (existing) -->
+            <div id="deleteConfirmModal" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <p>Are you sure you want to delete this vehicle?</p>
+                    <button id="confirmDeleteButton">Yes, Delete</button>
+                    <button id="cancelDeleteButton">Cancel</button>
+                </div>
+            </div>
+
+            <!-- Add/Edit Maintenance Record Modal -->
+            <div id="maintenanceModal" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <span class="close-button" id="closeMaintenanceModal">&times;</span>
+                    <h2 id="maintenanceModalTitle">Add Maintenance Record</h2>
+                    <form id="maintenanceForm">
+                        <input type="hidden" id="maintenanceRecordId"> <!-- For editing -->
+                        <input type="hidden" id="maintenanceVehicleId"> <!-- To associate with vehicle -->
+                        <div>
+                            <label for="maintDate">Date:</label>
+                            <input type="date" id="maintDate" name="date" required>
+                        </div>
+                        <div>
+                            <label for="maintMileage">Mileage (km):</label>
+                            <input type="number" id="maintMileage" name="mileage" required>
+                        </div>
+                        <div>
+                            <label for="maintRepairType">Repair Type:</label>
+                            <input type="text" id="maintRepairType" name="repair_type" required placeholder="e.g., Oil Change, Tire Rotation">
+                        </div>
+                        <div>
+                            <label for="maintCost">Cost:</label>
+                            <input type="number" id="maintCost" name="cost" step="0.01" required>
+                        </div>
+                        <div>
+                            <label for="maintLocation">Location (Optional):</label>
+                            <input type="text" id="maintLocation" name="location" placeholder="e.g., Garage Name">
+                        </div>
+                        <div>
+                            <label for="maintNotes">Notes (Optional):</label>
+                            <textarea id="maintNotes" name="notes" rows="3"></textarea>
+                        </div>
+                        <button type="submit" id="saveMaintenanceButton">Save Record</button>
+                    </form>
+                    <p id="maintenanceFormMessage"></p>
+                </div>
+            </div>
+
         </main>
     </div>
-    <script src="js/auth.common.js"></script><script src="js/dashboard.js"></script>
+    <script src="js/auth.common.js"></script>
+    <script src="js/dashboard.js"></script>
 </body>
 </html>
